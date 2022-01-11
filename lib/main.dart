@@ -10,6 +10,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final signInPage = SignInPage();
+    
     return MaterialApp(
       title: 'Time Tracker',
       theme: ThemeData(
