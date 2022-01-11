@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton(
       {Key key,
+      this.child,
       this.color,
       this.borderRadius = 2.0,
       this.height = 50.0,
       this.onPressed,
-      this.child})
+      })
       : super(key: key);
 
   final Widget child;
