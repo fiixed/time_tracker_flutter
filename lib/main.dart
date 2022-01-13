@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:time_tracker_flutter/app/sign_in/sign_in_page.dart';
+import 'package:time_tracker_flutter/app/landing_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:time_tracker_flutter/services/auth.dart';
+import 'firebase_options.dart';
 
-void main(List<String> args) {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -10,14 +17,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final signInPage = SignInPage();
+    //const signInPage = SignInPage();
     
     return MaterialApp(
       title: 'Time Tracker',
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home: SignInPage(),
+      home: LandingPage(
+        auth: Auth(),
+      ),
     );
   }
 }

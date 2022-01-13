@@ -1,10 +1,23 @@
+
 import 'package:flutter/material.dart';
 import 'package:time_tracker_flutter/app/sign_in/sign_in_button.dart';
 import 'package:time_tracker_flutter/app/sign_in/social_sign_in_button.dart';
-import 'package:time_tracker_flutter/common_widgets/custom_elevated_button.dart';
+import 'package:time_tracker_flutter/services/auth.dart';
 
 class SignInPage extends StatelessWidget {
-  const SignInPage({Key key}) : super(key: key);
+  const SignInPage({Key key, @required this.auth})
+      : super(key: key);
+  final AuthBase auth;
+  
+
+  Future<void> _signInAnonymously() async {
+    try {
+      await auth.signInAnonymously();
+      
+    } on Exception catch (e) {
+      print(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +63,7 @@ class SignInPage extends StatelessWidget {
             assetName: 'images/facebook-logo.png',
             text: 'Sign in with Facebook',
             textColor: Colors.white,
-            color: Color(0xFF334D92),
+            color: const Color(0xFF334D92),
             onPressed: () {},
           ),
           const SizedBox(
@@ -80,7 +93,7 @@ class SignInPage extends StatelessWidget {
             text: 'Go anonymous',
             textColor: Colors.black,
             color: Colors.lime[300],
-            onPressed: () {},
+            onPressed: _signInAnonymously,
           ),
         ],
       ),
